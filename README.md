@@ -8,7 +8,7 @@ Built with:
 
 ## 📸 Demo
 
-![Streamlit App Screenshot](./blog_generation(topic).png)
+![Streamlit App Screenshot](./blog_generation(diff lang).png)
 
 ---
 
