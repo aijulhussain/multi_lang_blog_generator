@@ -14,9 +14,10 @@ Built with:
 
 ## 🚀 Features
 
+- Multi language blog generator(Hindi+French+Assamese) by defauilt English language
 - Generate SEO-optimized blog titles and long-form content from a topic
 - Interactive Streamlit UI
-- API-based architecture for easy integration
+
 - Built-in LLM workflow using LangGraph + Groq
 
 
@@ -27,8 +28,7 @@ Built with:
 git clone https://github.com/aijulhussain/Agentic_Blog_Generator.git
 .venv\Scripts\activate
 uv add -r requirements.txt
-streamlit run streamlit_app.py
+uvicorn app:app --reload
+open another powershell and run: streamlit run streamlit_app.py
 
 
-## Update streamlit_app.py with your public backend URL:
-API_URL = "https://your-backend.onrender.com/blogs"
