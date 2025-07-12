@@ -33,10 +33,19 @@ def main():
     
     # Input form
     with st.form("blog_form"):
-        st.subheader("Enter Your Blog Topic")
+        st.subheader("Enter Your Blog Details")
+        
+        # Topic input
         topic = st.text_input(
             "What topic would you like to generate a blog about?",
             placeholder="e.g., Artificial Intelligence in Healthcare"
+        )
+        
+        # Language selection
+        language = st.selectbox(
+            "Select blog language:",
+            ["", "Hindi", "French", "Assamese"],
+            index=0
         )
         
         submitted = st.form_submit_button("Generate Blog", type="primary")
@@ -44,10 +53,16 @@ def main():
         if submitted and topic:
             with st.spinner("Generating your blog... This may take a moment."):
                 try:
+                    # Prepare payload
+                    payload = {"topic": topic}
+                    if language:  # Only add language if it's selected
+                        payload["language"] = language
+                    
                     # Call your FastAPI endpoint
                     response = requests.post(
-                        "https://agentic-blog-generator-1.onrender.com/blogs",
-                        json={"topic": topic}
+                        # "https://agentic-blog-generator-1.onrender.com/blogs",
+                        "http://localhost:8000/blogs",
+                        json=payload
                     )
                     
                     if response.status_code == 200:
@@ -57,10 +72,10 @@ def main():
                         st.error(f"❌ Error: {response.text}")
                         
                 except requests.exceptions.ConnectionError:
-                    st.error("❌ Could not connect to the backend API. Make sure your FastAPI app is running on port 8000.")
+                    st.error("❌ Could not connect to the backend API. Make sure your FastAPI app is running.")
                 except Exception as e:
                     st.error(f"❌ An error occurred: {str(e)}")
-
+    
     # Display generated blog if available
     if st.session_state.generated_blog:
         st.markdown("---")
@@ -75,10 +90,6 @@ def main():
         # Display content
         if 'blog' in blog_data and 'content' in blog_data['blog']:
             st.markdown(blog_data['blog']['content'])
-        
-        # # Display raw data for debugging
-        # with st.expander("🔍 View Raw Response"):
-        #     st.json(blog_data)
 
 if __name__ == "__main__":
     main()
