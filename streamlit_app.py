@@ -61,7 +61,7 @@ def main():
                     # Call your FastAPI endpoint
                     response = requests.post(
                         # "https://agentic-blog-generator-1.onrender.com/blogs",
-                        "http://localhost:8000/blogs",
+                        "https://multi-lang-blog-generator.onrender.com/",
                         json=payload
                     )
                     
