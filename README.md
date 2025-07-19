@@ -1,3 +1,7 @@
+## APP link: https://multilangbloggenerator-8uad6k88jn6b5akfsstgbc.streamlit.app/
+
+
+
 Built with:
 - 🧠 **Groq LLM** (LLaMA 3.1 8B)
 - ⚙️ **FastAPI** for backend API
@@ -22,7 +26,11 @@ Built with:
 
 
 
+## API = https://multi-lang-blog-generator.onrender.com/blogs
+
 ## 📦 Installation (Run Locally)
+
+
 
 ```bash
 git clone https://github.com/aijulhussain/Agentic_Blog_Generator.git
