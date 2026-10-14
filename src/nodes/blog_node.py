@@ -46,18 +46,22 @@ class BlogNode:
         - Maintain the original tone, style, and formatting.
         - Adapt cultural references and idioms to be appropriate for {current_language}.
 
+        ORIGINAL TITLE:
+        {blog_title}
+
         ORIGINAL CONTENT:
         {blog_content}
 
         """
         print(state["current_language"])
+        blog_title=state["blog"]["title"]
         blog_content=state["blog"]["content"]
         messages=[
-            HumanMessage(translation_prompt.format(current_language=state["current_language"], blog_content=blog_content))
+            HumanMessage(translation_prompt.format(current_language=state["current_language"], blog_title=blog_title, blog_content=blog_content))
 
         ]
-        transaltion_content = self.llm.with_structured_output(Blog).invoke(messages)
-        return {"blog": {"content": transaltion_content}}
+        translated_blog = self.llm.with_structured_output(Blog).invoke(messages)
+        return {"blog": {"title": translated_blog.title, "content": translated_blog.content}}
 
     def route(self, state: BlogState):
         return {"current_language": state['current_language'] }
